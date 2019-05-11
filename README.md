@@ -4,7 +4,7 @@
 
 `git clone https://github.com/jddelia/studentfun`
 
-`cd hatchtest`
+`cd studentfun`
 
 `npm install`
 
