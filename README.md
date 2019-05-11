@@ -2,7 +2,10 @@
 
 ## How to run
 
-`git clone`
+`git clone https://github.com/jddelia/studentfun`
+
 `cd hatchtest`
+
 `npm install`
+
 `npm start`
