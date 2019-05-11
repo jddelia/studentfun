@@ -2,7 +2,7 @@
 
 ## How to run
 
-`git clone'
+`git clone`
 `cd hatchtest`
 `npm install`
 `npm start`
