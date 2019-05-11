@@ -19,42 +19,37 @@ const StudentContainer = ({ students }) => {
     }
 
     handleStudentsArray();
-  }, [students]);
+  }, [students, searchFilter, tagFilter]);
 
   function getStudents() {
     let searchFilteredStudents = students.filter(student => {
-        const fullName = `${student.firstName} ${student.lastName}`;
-        return fullName.toLowerCase().includes(searchFilter.toLowerCase());
-      })
+      const fullName = `${student.firstName} ${student.lastName}`;
+      return fullName.toLowerCase().includes(searchFilter.toLowerCase());
+    })
 
-    let tagFilteredStudents = searchFilteredStudents.filter(student => {
-        const fullName = `${student.firstName} ${student.lastName}`
-        return fullName.toLowerCase().includes(tagFilter.toLowerCase());
-      })
+    let studentList = searchFilteredStudents.map(student => {
+      function gradesAvg(grades) {
+        let res = grades.reduce((acc, current) => parseInt(acc) + parseInt(current), 0);
+        return res / grades.length;
+      }
 
-    let studentList = tagFilteredStudents.map(student => {
-        function gradesAvg(grades) {
-          let res = grades.reduce((acc, current) => parseInt(acc) + parseInt(current), 0);
-          return res / grades.length;
-        }
+      const avg = gradesAvg(student.grades);
 
-        const avg = gradesAvg(student.grades);
-
-        return (
-          <StudentCard
-            key={student.id}
-            fName={student.firstName}
-            lName={student.lastName}
-            studentImg={student.pic}
-            email={student.email}
-            company={student.company}
-            skill={student.skill}
-            avg={avg}
-            grades={student.grades}
-            tagFilter={tagFilter}
-          />
-        );
-      })
+      return (
+        <StudentCard
+          key={student.id}
+          fName={student.firstName}
+          lName={student.lastName}
+          studentImg={student.pic}
+          email={student.email}
+          company={student.company}
+          skill={student.skill}
+          avg={avg}
+          grades={student.grades}
+          tagFilter={tagFilter}
+        />
+      );
+    });
 
     return studentList;
   }
